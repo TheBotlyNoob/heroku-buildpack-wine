@@ -24,4 +24,4 @@ curl -L --silent $DOWNLOAD_URL | tar -xz --strip-components=1
 echo "-----> Exporting PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/wine.sh"
 mkdir -p $(dirname $PROFILE_PATH)      
-echo 'export PATH="$PATH:${HOME}/vendor/wine"' >> $PROFILE_PATH
+echo 'export PATH="$PATH:${HOME}/vendor/wine/bin"' >> $PROFILE_PATH
