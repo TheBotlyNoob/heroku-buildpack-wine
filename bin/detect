@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# this pack is valid for all apps
+
+echo "wine"
+exit 0
