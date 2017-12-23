@@ -1,0 +1,27 @@
+#!/bin/sh
+
+indent() {
+    sed -u 's/^/       /'
+}
+
+echo "-----> Installing wine 1.6.2"
+
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+DOWNLOAD_URL="https://github.com/iScribes/heroku-buildpack-wine/releases/download/1.6/wine1.6.tar.gz"
+
+echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+mkdir -p wine
+cd wine
+
+echo "-----> Downloading and extracting from " $DOWNLOAD_URL
+curl -L --silent $DOWNLOAD_URL | tar -xz --strip-components=1
+
+echo "-----> Exporting PATH"
+PROFILE_PATH="$BUILD_DIR/.profile.d/wine.sh"
+mkdir -p $(dirname $PROFILE_PATH)      
+echo 'export PATH="$PATH:${HOME}/vendor/wine/bin"' >> $PROFILE_PATH
