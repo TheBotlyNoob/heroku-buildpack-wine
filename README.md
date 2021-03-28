@@ -6,5 +6,5 @@ A Heroku buildpack for wine that always downloads binary wine from a [static bui
 Add the following to `.buildpacks`:
 
 ```
-https://github.com/iScribes/heroku-buildpack-wine.git
+https://github.com/TheBotlyNoob/heroku-buildpack-wine.git
 ```
