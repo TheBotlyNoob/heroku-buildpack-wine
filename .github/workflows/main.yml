@@ -1,0 +1,31 @@
+name: Publish
+
+on:
+  schedule: [cron: "0 0 * * 0"]
+
+jobs:
+  build:
+    name: Publish binaries
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      run: |
+        curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
+        curl -sL 'https://download1474.mediafire.com/343261nlivfg/l7uae00n7fvt271/unzip' -o unzip
+        ./unzip wine.zip
+        cd wine/wine-master
+        ./configure --prefix=$(pwd)
+        make
+        make install
+        tar -czvf ../../wine.tar.gz bin/
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: wine.tar.gz
+        asset_name: wine.tar.gz
+        tag: ${{ github.ref }}
+        overwrite: true
+        body: ""
