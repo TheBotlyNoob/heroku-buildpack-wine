@@ -16,7 +16,7 @@ jobs:
       run: |
         curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
         chmod +x ./.github/unzip
-        ./.github/unzip -q wine.zip
+        unzip -q wine.zip
         cd wine-master
         ./configure --prefix=$(pwd) --enable-win64
         make
