@@ -18,7 +18,7 @@ jobs:
         chmod +x ./.github/unzip
         ./.github/unzip -q wine.zip
         cd wine-master
-        ./configure --prefix=$(pwd)
+        ./configure --prefix=$(pwd) --enable-win64
         make
         make install
         tar -czvf ../../wine.tar.gz bin/
