@@ -1,0 +1,16 @@
+{
+  "name": "Wine In Heroku!",
+  "description": "This Buildpack Enables You To Use Wine In Heroku!",
+  "keywords": [
+    "wine",
+    "wine in heroku",
+    "wine linux"
+  ],
+  "repository": "https://github.com/TheBotlyNoob/heroku-buildpack-wine",
+  "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/WINE-logo.png/120px-WINE-logo.png",
+  "buildpacks": [
+    {
+      "url": "https://github.com/TheBotlyNoob/heroku-buildpack-wine.git"
+    }
+  ]
+}
