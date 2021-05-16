@@ -15,7 +15,7 @@ jobs:
     - name: Build
       run: |
         curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
-        chmod +x ./unzip
+        chmod +x ./.github/unzip
         ./.github/unzip wine.zip
         cd wine/wine-master
         ./configure --prefix=$(pwd)
