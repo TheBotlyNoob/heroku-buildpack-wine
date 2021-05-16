@@ -5,8 +5,5 @@
 A Heroku buildpack for wine that always downloads binary wine from a [static build](https://github.com/TheBotlyNoob/heroku-buildpack-wine/releases/latest/download/wine.tar.gz). It does not compile the wine within the dyno since it is time consuming.
 
 ## Usage
-Add the following to `.buildpacks`:
 
-```
-https://github.com/TheBotlyNoob/heroku-buildpack-wine.git
-```
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
