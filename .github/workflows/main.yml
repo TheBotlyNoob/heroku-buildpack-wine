@@ -19,7 +19,8 @@ jobs:
         ./configure --prefix=$(pwd) --enable-win64
         make
         make install
-        tar -czvf ../wine.tar.gz bin/
+        mv lib/ bin/ -t build/
+        tar -czvf ../wine.tar.gz build/
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
