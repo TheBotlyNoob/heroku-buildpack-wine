@@ -19,7 +19,7 @@ mkdir -p wine
 cd wine
 
 echo "-----> Downloading and extracting from " $DOWNLOAD_URL
-curl -sL $DOWNLOAD_URL | tar -xz
+curl -sL $DOWNLOAD_URL | tar -xz --strip-components=1
 
 echo "-----> Exporting PATH"
 PROFILE_PATH="$BUILD_DIR/.profile.d/wine.sh"
