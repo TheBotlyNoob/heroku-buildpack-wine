@@ -20,7 +20,7 @@ jobs:
         unzip -q wine.zip
         mkdir -p wine-stable/build
         cd wine-stable
-        ./configure --prefix=$(pwd)/build --enable-win64
+        ./configure --prefix=$(pwd)/build
         make
         make install
         cp build/bin/wine64 build/bin/wine
