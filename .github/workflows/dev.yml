@@ -25,6 +25,15 @@ jobs:
         make install
         cp build/bin/wine64 build/bin/wine
         tar -czvf ../wine.tar.gz build/
+
+    - name: Remove Previous Release
+      uses: dev-drprasad/delete-tag-and-release@v0.2.0
+      with:
+        delete_release: true
+        tag_name: Wine-Dev
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
