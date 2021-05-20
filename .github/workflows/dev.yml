@@ -13,11 +13,14 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build
       run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install ia32-libs libc6-dev-i386 lib32z1-dev lib32bz2-dev
         curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
         unzip -q wine.zip
         mkdir -p wine-master/build
         cd wine-master
-        ./configure --prefix=$(pwd)/build --enable-win64
+        ./configure --prefix=$(pwd)/build
         make
         make install
         cp build/wine64 build/wine
