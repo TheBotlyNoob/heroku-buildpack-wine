@@ -33,4 +33,4 @@ jobs:
         asset_name: wine.tar.gz
         tag: "Wine-Dev"
         overwrite: true
-        body: "## This Release Is Updated Every Week, Don't Worry If The Tag Is Old.\nPlease Don't Use This For Personal Use, [Build It Yourself](https://wiki.winehq.org/Building_Wine), Or [Download The Prebuild Binary](https://wiki.winehq.org/Download)."
+        body: "You Will Be Able To Use This For Personal Use, But It Is Not Recomended. It Is Recomended To [Build It Yourself](https://wiki.winehq.org/Building_Wine), Or [Download The Prebuild Binary](https://wiki.winehq.org/Download)."
