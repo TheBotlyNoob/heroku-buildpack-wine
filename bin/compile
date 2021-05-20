@@ -8,9 +8,7 @@ echo "-----> Installing wine"
 
 BUILD_DIR=$1
 VENDOR_DIR="vendor"
-DOWNLOAD_URL="https://github.com/TheBotlyNoob/heroku-buildpack-wine/releases/download/Wine-Stable/wine.tar.gz"
-
-echo "DOWNLOAD_URL = " $DOWNLOAD_URL | indent
+DOWNLOAD_URL="https://github.com/TheBotlyNoob/heroku-buildpack-wine/releases/download/Wine-Stable/wine.tar.gz"\
 
 cd $BUILD_DIR
 mkdir -p $VENDOR_DIR
