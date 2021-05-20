@@ -23,7 +23,7 @@ jobs:
         ./configure --prefix=$(pwd)/build
         make
         make install
-        cp build/wine64 build/wine
+        cp build/bin/wine64 build/bin/wine
         tar -czvf ../wine.tar.gz build/
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
