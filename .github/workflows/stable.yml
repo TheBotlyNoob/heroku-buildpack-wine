@@ -23,7 +23,6 @@ jobs:
         ./configure --prefix=$(pwd)/build
         make
         make install
-        cp build/bin/wine64 build/bin/wine
         tar -czvf ../wine.tar.gz build/
         
     - name: Remove Previous Release
