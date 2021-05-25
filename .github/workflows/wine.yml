@@ -25,19 +25,19 @@ jobs:
         make install
         tar -czvf ../wine-stable.tar.gz build/
 
-      - name: Build Dev
-        run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install lib32z1 libc6-dev-i386 lib32z1-dev libbz2-1.0:i386 xserver-xorg-dev:i386 libfreetype6-dev:i386
-          curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine-dev.zip
-          unzip -q wine-dev.zip
-          mkdir -p wine-dev/build
-          cd wine-dev
-          ./configure --prefix=$(pwd)/build
-          make
-          make install
-          tar -czvf ../wine-dev.tar.gz build/
+    - name: Build Dev
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install lib32z1 libc6-dev-i386 lib32z1-dev libbz2-1.0:i386 xserver-xorg-dev:i386 libfreetype6-dev:i386
+        curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine-dev.zip
+        unzip -q wine-dev.zip
+        mkdir -p wine-dev/build
+        cd wine-dev
+        ./configure --prefix=$(pwd)/build
+        make
+        make install
+        tar -czvf ../wine-dev.tar.gz build/
         
     - name: Remove Previous Release
       uses: dev-drprasad/delete-tag-and-release@v0.2.0
