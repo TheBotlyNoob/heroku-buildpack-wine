@@ -1,4 +1,4 @@
-name: Publish Dev
+name: Publish Wine
 
 on:
   workflow_dispatch:
@@ -11,25 +11,39 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Build
+    - name: Build Stable
       run: |
         sudo dpkg --add-architecture i386
         sudo apt-get update
         sudo apt-get install lib32z1 libc6-dev-i386 lib32z1-dev libbz2-1.0:i386 xserver-xorg-dev:i386 libfreetype6-dev:i386
-        curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine.zip
-        unzip -q wine.zip
-        mkdir -p wine-master/build
-        cd wine-master
+        curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/stable.zip' -o wine-stable.zip
+        unzip -q wine-stable.zip
+        mkdir -p wine-stable/build
+        cd wine-stable
         ./configure --prefix=$(pwd)/build
         make
         make install
-        tar -czvf ../wine.tar.gz build/
+        tar -czvf ../wine-stable.tar.gz build/
 
+      - name: Build Dev
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update
+          sudo apt-get install lib32z1 libc6-dev-i386 lib32z1-dev libbz2-1.0:i386 xserver-xorg-dev:i386 libfreetype6-dev:i386
+          curl -sL 'https://github.com/wine-mirror/wine/archive/refs/heads/master.zip' -o wine-dev.zip
+          unzip -q wine-dev.zip
+          mkdir -p wine-dev/build
+          cd wine-dev
+          ./configure --prefix=$(pwd)/build
+          make
+          make install
+          tar -czvf ../wine-dev.tar.gz build/
+        
     - name: Remove Previous Release
       uses: dev-drprasad/delete-tag-and-release@v0.2.0
       with:
         delete_release: true
-        tag_name: Wine-Dev
+        tag_name: Wine-Latest
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
@@ -37,8 +51,8 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: wine.tar.gz
-        asset_name: wine.tar.gz
-        tag: "Wine-Dev"
+        file: wine-*.tar.gz
+        tag: "Wine-Latest"
         overwrite: true
+        file_glob: true
         body: "You Will Be Able To Use This For Personal Use, But It Is Not Recomended. It Is Recomended To [Build It Yourself](https://wiki.winehq.org/Building_Wine), Or [Download The Prebuild Binary](https://wiki.winehq.org/Download)."
